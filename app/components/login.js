@@ -16,10 +16,10 @@ const Login=()=>{
     //         console.log('Error retrieving data:', error);
     //     }
     //   }, []);
-    // const [Logindata,Setlogindata] = useState({
-    //     'username':'',
-    //     'password':''
-    // })
+    const [Logindata,Setlogindata] = useState({
+        'username':'',
+        'password':''
+    })
     const storeData = async (key, value) => {
         try {
           await AsyncStorage.setItem(key, value);
@@ -31,9 +31,9 @@ const Login=()=>{
       
     const Handlelogin=(e)=>{
         if(Logindata.username===""){
-            Alert.alert('Enter Your User Id')
+            window.alert('Enter Your User Id')
         }else if(Logindata.password===""){
-            Alert.alert('Enter Your Password!!')
+            window.alert('Enter Your Password!!')
         }else{
             e.preventDefault()
             axios.post('https://space-club.onrender.com/adityalogins',Logindata).then((res)=>{
@@ -73,7 +73,6 @@ const Login=()=>{
                 />
             </View>
         </View>
-    )
-}
+    )}
 
 export default Login;

@@ -1,26 +1,29 @@
 import React from "react";
-import Styles from '../styles/spotlightstyles.js';
+import Styles from '../styles/profilestyles.js';
 import { Text, View,Image,Pressable } from "react-native";
 import { router } from "expo-router";
 
-const Spotlight=()=>{
+const Profile=()=>{
     return(
         <>
             <View style={Styles.container}>
-                <Text>Spotlight Page</Text>
+                <Text>Profile Page</Text>
             </View>
             <View style={Styles.sub1}>
                 <Pressable
                     onPress={()=>{router.push('/components/profile')}}
                 >
-                    <Image
-                    source={{ uri: 'https://space-club.onrender.com/img/22P35A0384.jpg' }}
-                    style={[Styles.img]}
-                    />
+                    <View
+                        style={[Styles.focus]}
+                    >
+                            <Image
+                            source={{ uri: 'https://space-club.onrender.com/img/22P35A0384.jpg' }}
+                            style={[Styles.img]}
+                            />
+                    </View>
                 </Pressable>
                 <Pressable
                     onPress={()=>{router.push('/components/spotlight')}}
-                    style={Styles.focus}
                 >
                     <Image
                     source={require('../../public/face.png')}
@@ -37,6 +40,7 @@ const Spotlight=()=>{
                 </Pressable>
                 <Pressable
                     onPress={()=>{router.push('/components/messenger')}}
+                    style={Styles.icon}
                 >
                     <Image
                     source={require('../../public/msg.png')}
@@ -56,4 +60,4 @@ const Spotlight=()=>{
     )
 };
 
-export default Spotlight;
+export default Profile;
