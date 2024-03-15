@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import { Text, View, Image, Alert, Pressable } from 'react-native';
+import { Text, View, Image, Pressable, ScrollView } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import Styles from '../styles/home';
+import Styles from '../styles/homestyles';
 import { router } from 'expo-router';
 
 const Home = () => {
@@ -12,7 +12,6 @@ const Home = () => {
         const value = await AsyncStorage.getItem(key);
         if (value === null) {
           router.push('/components/login')
-          Alert.alert('Login Failed');
         }
       } catch (error) {
         console.log('Error retrieving data:', error);
@@ -25,19 +24,21 @@ const Home = () => {
   return (
     <View style={Styles.container}>
       <View style={Styles.sub1}>
+        <Text style={Styles.head}>ADITYA UNIVERSITY</Text>
         <Image
-          source={{ uri: 'https://space-club.onrender.com/img/22P35A0384.jpg' }}
+          source={require('../../public/logo.png')}
           style={Styles.img}
         />
-        <Text style={Styles.head}>ADITYA</Text>
-        <Image
-          source={{ uri: 'https://space-club.onrender.com/img/msg.png' }}
-          style={Styles.msg}
-        />
-        <Pressable onPress={() =>router.push('/components/logout')}>
-          <Text>LOGIN</Text>
-        </Pressable>
       </View>
+      <ScrollView>
+        <View>
+          <Pressable
+            onPress={()=>{router.push('/components/logout')}}
+          >
+            <Text>LOGOUT</Text>
+          </Pressable>
+        </View>
+      </ScrollView>
     </View>
   );
 };

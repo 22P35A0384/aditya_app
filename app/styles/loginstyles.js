@@ -11,7 +11,7 @@ const Loginstyles = StyleSheet.create({
         height: 150,
         width: 250,
         position: 'relative',
-        bottom: 100, // Adjust this value as needed  
+        bottom: 70, // Adjust this value as needed  
     },
     loginblock:{
         // marginTop:'30%',

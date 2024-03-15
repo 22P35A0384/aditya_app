@@ -1,15 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { router } from "expo-router";
+import { router, useNavigation } from "expo-router";
 
-const Logout=()=>{
-    try {
-        AsyncStorage.removeItem('user');
+const Logout = () => {
+
+  useEffect(() => {
+    const removeUserData = async () => {
+      try {
+        await AsyncStorage.removeItem('user');
         console.log('Data removed successfully!');
-    } catch (error) {
+        // Navigate to the login screen after removing user data
+        router.push('/components/login');
+      } catch (error) {
         console.log('Error removing data:', error);
-    }
-    router.push('/components/login')
-}
+      }
+    };
+
+    // Call the function to remove user data when the component mounts
+    removeUserData();
+  }, []); // Dependency array to ensure navigation is included in the effect dependencies
+
+  // Since useEffect handles side effects, the component's return value can be null
+  return null;
+};
 
 export default Logout;

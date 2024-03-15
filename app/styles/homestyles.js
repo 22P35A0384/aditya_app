@@ -9,20 +9,22 @@ const Homestyles = StyleSheet.create({
         alignItems: 'center',
         // justifyContent: 'center',
         backgroundColor:'#fd752c',
-        paddingTop:5,
-        paddingBottom:5,
+        paddingTop:10,
+        paddingBottom:10,
         flexDirection:"row",
-        justifyContent: 'space-between',
+        justifyContent: 'space-evenly',
         paddingLeft:10,
         paddingRight:10,
     },
     head:{
-        fontSize:30
+        fontSize:25,
+        fontWeight:'bold',
+        // lineHeight:30
     },
     img:{
-        height:50,
+        height:30,
         width:50,
-        borderRadius:50
+        // borderRadius:50
     },
     msg:{
         height:30,

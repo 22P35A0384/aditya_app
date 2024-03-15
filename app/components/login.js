@@ -1,9 +1,21 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { TextInput,Button,View,Text,Image,Alert } from "react-native";
-import Styles from '../styles/login'
+import Styles from '../styles/loginstyles'
 import { router } from "expo-router";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from "axios";
 const Login=()=>{
+    useEffect(() => {
+        const key = 'user'
+        try {
+            const value = AsyncStorage.getItem(key);
+        if (value !== null) {
+            router.push('/')
+        }
+        } catch (error) {
+            console.log('Error retrieving data:', error);
+        }
+      }, []);
     const [Logindata,Setlogindata] = useState({
         'username':'',
         'password':''
@@ -18,16 +30,28 @@ const Login=()=>{
       };
       
     const Handlelogin=(e)=>{
-        e.preventDefault()
-        storeData('user',Logindata.username)
-        // Alert.alert(Logindata.username)
-        router.push('/')
+        if(Logindata.username===""){
+            Alert.alert('Enter Your User Id')
+        }else if(Logindata.password===""){
+            Alert.alert('Enter Your Password!!')
+        }else{
+            e.preventDefault()
+            axios.post('https://space-club.onrender.com/adityalogins',Logindata).then((res)=>{
+                if(res.data){
+                    storeData('user',Logindata.username)
+                    // Alert.alert(Logindata.username)
+                    router.push('/')
+                }else{
+                    Alert.alert('Login Failed')
+                }
+            })
+        }
     }
     return(
         <View style={Styles.container}>
             <View style={Styles.imgcontr}>
                 <Image
-                    source={{uri:'https://space-club.onrender.com/img/logo.png'}}
+                    source={require('../../public/logo.png')}
                     style={Styles.img}
                 />
             </View>
