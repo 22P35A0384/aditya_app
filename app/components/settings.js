@@ -10,10 +10,14 @@ const Settings=()=>{
                 <Text>Settings Page</Text>
             </View>
             <View style={Styles.sub1}>
-                <Image
+                <Pressable
+                    onPress={()=>{router.push('/components/profile')}}
+                >
+                    <Image
                     source={{ uri: 'https://space-club.onrender.com/img/22P35A0384.jpg' }}
-                    style={Styles.img}
-                />
+                    style={[Styles.img]}
+                    />
+                </Pressable>
                 <Pressable
                     onPress={()=>{router.push('/components/spotlight')}}
                 >
