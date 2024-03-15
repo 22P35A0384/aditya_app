@@ -5,17 +5,17 @@ import { router } from "expo-router";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from "axios";
 const Login=()=>{
-    useEffect(() => {
-        const key = 'user'
-        try {
-            const value = AsyncStorage.getItem(key);
-        if (value !== null) {
-            router.push('/')
-        }
-        } catch (error) {
-            console.log('Error retrieving data:', error);
-        }
-      }, []);
+    // useEffect(() => {
+    //     const key = 'user'
+    //     try {
+    //         const value = AsyncStorage.getItem(key);
+    //     if (value !== null) {
+    //         router.push('/')
+    //     }
+    //     } catch (error) {
+    //         console.log('Error retrieving data:', error);
+    //     }
+    //   }, []);
     const [Logindata,Setlogindata] = useState({
         'username':'',
         'password':''
