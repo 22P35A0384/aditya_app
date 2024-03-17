@@ -5,7 +5,7 @@ import {Entypo} from '@expo/vector-icons';
 export default function Buttons({tittle,onPress,icon,color}){
     return(
         <TouchableOpacity onPress={onPress} style={styles.button}>
-            <Entypo name={icon} size={28} color={color ? color : '#f1f1f1'}/>
+            <Entypo name={icon} size={56} color={color ? color : '#f1f1f1'}/>
             <Text style={styles.text}>{tittle}</Text>
         </TouchableOpacity>
     )
@@ -13,10 +13,10 @@ export default function Buttons({tittle,onPress,icon,color}){
 
 const styles = StyleSheet.create({
     button:{
-        height:40,
-        flexDirection:'row',
+        height:60,
+        // flexDirection:'row',
         alignItems:'center',
-        justifyContent:'center'
+        justifyContent:'flex-start'
     },
     text:{
         fontWeight:'bold',

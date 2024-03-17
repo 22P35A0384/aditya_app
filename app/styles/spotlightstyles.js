@@ -5,6 +5,8 @@ const Spotlightstyling = StyleSheet.create({
     container: {
         flex:1,
         backgroundColor:'#f4f2ee',
+        // alignItems: 'center',
+        // justifyContent: 'center',
     },
     sub:{
         alignItems: 'center',
@@ -85,8 +87,8 @@ const Spotlightstyling = StyleSheet.create({
         backgroundColor:'blue',
         paddingTop:10,
         paddingBottom:10,
-        width:250,
-        marginLeft:53,
+        width:80,
+        marginLeft:"37%",
         borderRadius:50
         // flexDirection:"row",
         // justifyContent: 'space-between',
@@ -97,17 +99,35 @@ const Spotlightstyling = StyleSheet.create({
         flex:1,
     },
     sub4:{
+        // flex:1,
         marginTop:10,
+        marginLeft:20,
+        marginRight:20,
         alignItems: 'center',
         justifyContent: 'center',
-        // backgroundColor:'white',
-        // paddingTop:5,
-        // paddingBottom:5,
+        backgroundColor:'white',
+        paddingTop:25,
+        paddingBottom:5,
+        position:'relative',
+        bottom:'150%',
+        borderRadius:30,
         // flexDirection:"row",
         // justifyContent: 'space-between',
         // paddingLeft:10,
         // paddingRight:10,
     },
+    get:{
+        backgroundColor:'blue',
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingTop:10,
+        paddingBottom:10,
+        width:180,
+        marginLeft:"25%",
+        marginTop:30,
+        borderRadius:50
+        
+    }
 })
 
 export default Spotlightstyling;

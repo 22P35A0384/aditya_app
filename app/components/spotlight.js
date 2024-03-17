@@ -1,10 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import Styles from '../styles/spotlightstyles.js';
-import { Text, View,Image,Pressable, Button } from "react-native";
+import { Text, View,Image,Pressable, Button, TouchableOpacity } from "react-native";
 import { router } from "expo-router";
 import { Camera,CameraType } from "expo-camera";
 import * as MediaLibrary from 'expo-media-library';
-import { TouchableOpacity } from "react-native-gesture-handler";
 import {Entypo} from '@expo/vector-icons'
 import Buttons from "./buttion.js";
 
@@ -36,8 +35,20 @@ const Spotlight=()=>{
         }
     }
 
+    const Setimagenull=()=>{
+        setimage(null)
+    }
+
     if(hasCamerapermission === false){
-        return <Text>Camera Access Denied</Text>
+        useEffect(()=>{
+            (async ()=>{
+                MediaLibrary.requestPermissionsAsync();
+                const cameraStatus = await Camera.requestCameraPermissionsAsync();
+                Camera.requestCameraPermissionsAsync()
+                sethasCemarapermission(cameraStatus.status === 'granted');
+            })();
+        },[])
+        // return <Text>Camera Access Denied</Text>
     }
     return(
         <>
@@ -51,6 +62,7 @@ const Spotlight=()=>{
                 </View>
                 <View style={Styles.sub2}>
                     {/* <Text>Spotlight Block</Text> */}
+                    {!image ?
                     <Camera
                         style={Styles.camera}
                         type={type}
@@ -58,21 +70,40 @@ const Spotlight=()=>{
                         ref={cameraRef}
                     >
                         <Text></Text>
-                    </Camera>
-                </View>
-                <View style={Styles.sub3}>
-                    <Buttons tittle={'Get Student Details'} icon='camera' onPress={takePicture}/> 
-                </View>
-                <View style={Styles.sub4}>
-                    {!image ? 
-                    <></> 
+                    </Camera> 
                     :
                     <Image
                         source={{uri:image}}
-                        style={{width:100,height:100}}
+                        style={Styles.camera}
                     />   
                 }
                 </View>
+                {!image ? 
+                    <View style={Styles.sub3}>
+                        <Buttons icon='camera' onPress={takePicture}/> 
+                    </View>
+                    :
+                    <View>
+                        <TouchableOpacity style={Styles.get}>
+                        <Text style={{color:'white'}}>Get Student Details</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={Styles.get} onPress={Setimagenull}>
+                            <Text style={{color:'white'}}>Retake Picture</Text>
+                        </TouchableOpacity>
+                    </View>
+                }
+                {/* <View>
+                    {!image ? 
+                    <></> 
+                    :
+                        <View style={Styles.sub4}>
+                            <Image
+                                source={{uri:image}}
+                                style={{width:200,height:250,borderRadius:20}}
+                            /> 
+                        </View>
+                }
+                </View> */}
             </View>
             <View style={Styles.sub1}>
                 <Pressable
